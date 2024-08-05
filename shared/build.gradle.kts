@@ -1,9 +1,8 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-//    kotlin("plugin.serialization") version "2.0.0"
-//    kotlin("plugin.serialization") version "2.0.0"
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
+    alias(libs.plugins.skie)
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 kotlin {
@@ -30,15 +29,15 @@ kotlin {
         commonMain.dependencies {
             //put your multiplatform dependencies here
             implementation(libs.ktor.client.core)
-//            implementation(libs.ktor.serialization)
-            implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.touchlab.skie.annotations)
         }
 
         androidMain.dependencies{
             implementation(libs.ktor.client.okhttp)
-            implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.androidx.lifecycle.viewmodel.ktx)
         }
 
         iosMain.dependencies{
